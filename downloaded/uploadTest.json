@@ -1,0 +1,221 @@
+// insert
+{
+    "__$operation": 2,
+    "__$seqval": "\u0000\u0000\u0000m\u0000\u0000[�\u0000\u0003",
+    "__$start_lsn": "\u0000\u0000\u0000m\u0000\u0000[�\u0000\u0004",
+    "__$update_mask": "?",
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "c",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656422293894,
+    "binary": "a",
+    "date": "2072-01-01 00:00:00",
+    "id": 22,
+    "name": "jacob",
+    "number_float": 1.23,
+    "number_int": 1,
+    "start_lsn_date": "2022-06-28 13:18:09.417"
+}
+
+//  delete
+{
+    "__$operation": 1,
+    "__$seqval": "\u0000\u0000\u0000m\u0000\u0000\\�\u0000\u0002",
+    "__$start_lsn": "\u0000\u0000\u0000m\u0000\u0000\\�\u0000\u0003",
+    "__$update_mask": "?",
+    "__db": "Source_DB",
+    "__deleted": true,
+    "__op": "d",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656422396083,
+    "binary": "a",
+    "date": "2072-01-01 00:00:00",
+    "id": 22,
+    "name": "jacob",
+    "number_float": 1.23,
+    "number_int": 1,
+    "start_lsn_date": "2022-06-28 13:19:51.38"
+}
+
+// update
+{
+    "__$operation": 3,
+    "__$seqval": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0003",
+    "__$start_lsn": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0005",
+    "__$update_mask": "\u0002",
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "u",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656422823331,
+    "binary": "\u0000",
+    "date": "1900-01-01 00:00:00",
+    "id": 4,
+    "name": "Daniel",
+    "number_float": 11.234,
+    "number_int": 123465,
+    "start_lsn_date": "2022-06-28 13:27:01.727"
+}
+
+{
+    "__$operation": 4,
+    "__$seqval": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0003",
+    "__$start_lsn": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0005",
+    "__$update_mask": "\u0002",
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "u",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656422823331,
+    "binary": "\u0000",
+    "date": "1900-01-01 00:00:00",
+    "id": 4,
+    "name": "DanielUpdated",
+    "number_float": 11.234,
+    "number_int": 123465,
+    "start_lsn_date": "2022-06-28 13:27:01.727"
+}
+
+{
+    "__$operation": 4,
+    "__$seqval": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0002",
+    "__$start_lsn": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0005",
+    "__$update_mask": "\u0002",
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "u",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656422823331,
+    "binary": "\u0000",
+    "date": "2022-06-22 08:13:40.67",
+    "id": 3,
+    "name": "DanielUpdated",
+    "number_float": 11.234,
+    "number_int": 123465,
+    "start_lsn_date": "2022-06-28 13:27:01.727"
+}
+
+
+
+
+{
+    "__$operation": 3,
+    "__$seqval": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0004",
+    "__$start_lsn": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0005",
+    "__$update_mask": "\u0002",
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "u",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656422823331,
+    "binary": "\u001f",
+    "date": "1900-01-01 00:00:00",
+    "id": 5,
+    "name": "Daniel",
+    "number_float": 11.234,
+    "number_int": 123465,
+    "start_lsn_date": "2022-06-28 13:27:01.727"
+}
+
+{
+    "__$operation": 3,
+    "__$seqval": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0004",
+    "__$start_lsn": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0005",
+    "__$update_mask": "\u0002",
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "u",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656422823331,
+    "binary": "\u001f",
+    "date": "1900-01-01 00:00:00",
+    "id": 5,
+    "name": "Daniel",
+    "number_float": 11.234,
+    "number_int": 123465,
+    "start_lsn_date": "2022-06-28 13:27:01.727"
+}
+
+{
+    "__$operation": 3,
+    "__$seqval": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0002",
+    "__$start_lsn": "\u0000\u0000\u0000m\u0000\u0000_P\u0000\u0005",
+    "__$update_mask": "\u0002",
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "u",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656422823331,
+    "binary": "\u0000",
+    "date": "2022-06-22 08:13:40.67",
+    "id": 3,
+    "name": "Daniel",
+    "number_float": 11.234,
+    "number_int": 123465,
+    "start_lsn_date": "2022-06-28 13:27:01.727"
+}
+
+
+{
+    "__$operation": 2,
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "c",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656424167898,
+    "binary": "a",
+    "date": "2072-01-01 00:00:00",
+    "id": 23,
+    "name": "pankaj",
+    "number_float": 1.23,
+    "number_int": 1,
+    "start_lsn_date": "2022-06-28 13:49:26.013"
+}
+
+
+
+{
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "c",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656424284895,
+    "binary": "a",
+    "date": "2072-01-01 00:00:00",
+    "id": 24,
+    "name": "Sai",
+    "number_float": 1.23,
+    "number_int": 1,
+    "start_lsn_date": "2022-06-28 13:51:22.493"
+}
+
+
+{
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "c",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656424758330,
+    "binary": "a",
+    "date": "2072-01-01 00:00:00",
+    "id": 25,
+    "name": "Giri Babu",
+    "number_float": 1.23,
+    "number_int": 1
+}
+
+
+{
+    "__db": "Source_DB",
+    "__deleted": false,
+    "__op": "c",
+    "__table_name": "dbo_UsersTypes",
+    "__ts_ms": 1656499032806,
+    "binary": "a",
+    "date": "2072-01-01 00:00:00",
+    "id": 30,
+    "name": "Giri Babu Dabu",
+    "number_float": 1.23,
+    "number_int": 1
+}

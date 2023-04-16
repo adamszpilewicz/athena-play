@@ -1,0 +1,31 @@
+@startuml
+!pragma layout smetana
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v15.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/Storage/SimpleStorageService.puml
+
+actor Client
+
+package "Go Application" {
+  [Router]
+  [S3Client]
+  [CustomLogger]
+  [Config]
+}
+
+Client --> [Router] : HTTP Request
+SimpleStorageService(storageAlias, "bucket", "key")
+
+[Router] --> [S3Client] : Upload/Download
+
+[S3Client] --> [CustomLogger] : Logging
+[Router] --> [CustomLogger] : Logging
+
+[S3Client] --> [Config] : AWS Configuration
+
+[S3Client] --> storageAlias : Upload/Download
+
+[Router] --> Client : HTTP Response
+
+@enduml
