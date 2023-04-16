@@ -28,4 +28,5 @@ SimpleStorageService(storageAlias, "bucket", "key")
 
 [Router] --> Client : HTTP Response
 
+
 @enduml
