@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"fmt"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -15,6 +16,7 @@ func NewCustomLogger(objectName string, isDevelopment bool) (*CustomLogger, erro
 	if isDevelopment {
 		config = zap.NewDevelopmentConfig()
 		config.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
+		//config.EncoderConfig.EncodeCaller = customCallerEncoder
 	} else {
 		config = zap.Config{
 			Encoding:         "json",
@@ -35,6 +37,7 @@ func NewCustomLogger(objectName string, isDevelopment bool) (*CustomLogger, erro
 				EncodeCaller:   zapcore.ShortCallerEncoder,
 			},
 		}
+		config.EncoderConfig.EncodeCaller = customCallerEncoder
 	}
 
 	logger, err := config.Build(zap.AddCaller(), zap.Fields(zap.String("invoker", objectName)))
@@ -76,4 +79,12 @@ func (c *CustomLogger) Fatal(msg string, tags ...zap.Field) {
 
 func (c *CustomLogger) Sync() error {
 	return c.logger.Sync()
+}
+
+func customCallerEncoder(caller zapcore.EntryCaller, enc zapcore.PrimitiveArrayEncoder) {
+	if !caller.Defined {
+		enc.AppendString("undefined")
+		return
+	}
+	enc.AppendString(fmt.Sprintf("%s.%s", caller.TrimmedPath(), caller.Function))
 }

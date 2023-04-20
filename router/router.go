@@ -1,24 +1,25 @@
 package router
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
-	"s3-interaction/logger"
+	"s3-interaction/loggerCdc"
 	"s3-interaction/s3Client"
 )
 
 // Router is the main router of the application
 type Router struct {
 	S3Client *s3Client.S3Client
-	Logger   *logger.CustomLogger
+	Logger   loggerCdc.Logger
 }
 
 // NewRouter creates a new router
 func NewRouter(s3Client *s3Client.S3Client) (*Router, error) {
-	customLogger, err := logger.NewCustomLogger("router", true)
+	customLogger, err := loggerCdc.NewLogger("router", true)
 	if err != nil {
 		return nil, err
 	}
@@ -31,26 +32,8 @@ func NewRouter(s3Client *s3Client.S3Client) (*Router, error) {
 
 // SetupRoutes sets up the routes
 func (r *Router) SetupRoutes() {
-	http.HandleFunc("/download", r.HandleDownload)
 	http.HandleFunc("/downloadToFile", r.HandleDownloadToFile)
 	http.HandleFunc("/upload", r.HandleUpload)
-}
-
-// HandleDownload handles the download request
-func (r *Router) HandleDownload(w http.ResponseWriter, req *http.Request) {
-	bucket, key, err := getBucketAndKey(req)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-
-	fileContent, err := r.S3Client.DownloadFile(bucket, key)
-	if err != nil {
-		http.Error(w, "Failed to download the file", http.StatusInternalServerError)
-		return
-	}
-
-	writeFileToResponse(w, key, fileContent)
 }
 
 // HandleDownloadToFile handles the download request
@@ -90,17 +73,12 @@ func (r *Router) HandleUpload(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, "Failed to read the file from request", http.StatusBadRequest)
 		return
 	}
+	r.Logger.Info(fmt.Sprintf("File name got from request: %s", fileHeader.Filename))
 	defer file.Close()
 
-	bucket := req.FormValue("bucket")
-	if bucket == "" {
-		http.Error(w, "Missing 'bucket' query parameter", http.StatusBadRequest)
-		return
-	}
-
-	key := req.FormValue("key")
-	if key == "" {
-		http.Error(w, "Missing 'key' form field", http.StatusBadRequest)
+	bucket, key, err := getBucketAndKeyFromRequest(req)
+	if err != nil {
+		http.Error(w, "Missing 'bucket' or 'key' form field", http.StatusBadRequest)
 		return
 	}
 
@@ -132,13 +110,6 @@ func getBucketAndKey(req *http.Request) (string, string, error) {
 	return bucket, key, nil
 }
 
-// writeFileToResponse writes the file to the response
-func writeFileToResponse(w http.ResponseWriter, key string, fileContent []byte) {
-	w.Header().Set("Content-Disposition", fmt.Sprintf(`attachment;filename="%s"`, key))
-	w.Header().Set("Content-Type", "application/octet-stream")
-	w.Write(fileContent)
-}
-
 // saveFileToLocalPath saves the file to the local path
 func saveFileToLocalPath(bucket, localPath, key string, fileContent []byte, w http.ResponseWriter) {
 	filename := filepath.Base(key)
@@ -155,4 +126,14 @@ func saveFileToLocalPath(bucket, localPath, key string, fileContent []byte, w ht
 // buildKeyWithOriginalFilename builds the key with the original filename
 func buildKeyWithOriginalFilename(key, originalFilename string) string {
 	return filepath.Join(key, originalFilename)
+}
+
+// getBucketAndKeyFromRequest gets the bucket and key from the request
+func getBucketAndKeyFromRequest(req *http.Request) (string, string, error) {
+	bucket := req.FormValue("bucket")
+	key := req.FormValue("key")
+	if bucket == "" || key == "" {
+		return "", "", errors.New("missing required parameters")
+	}
+	return bucket, key, nil
 }
